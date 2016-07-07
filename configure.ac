@@ -10,7 +10,7 @@ AC_PROG_CC
 AC_PROG_LIBTOOL
 LT_INIT
 
-AC_CHECK_HEADERS(stddef.h stdio.h string.h locale.h)
+AC_CHECK_HEADERS(stddef.h stdio.h string.h regex.h libintl.h locale.h)
 
 AC_CONFIG_FILES([Makefile musl-rpmatch.pc])
 AC_OUTPUT

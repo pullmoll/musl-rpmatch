@@ -30,13 +30,22 @@
  *
  ***********************************************************************************/
 
+#include "config.h"
+
+#if HAVE_STDIO_H
 #include <stdio.h>
+#endif
+#if HAVE_STDLIB_H
 #include <stdlib.h>
+#endif
+#if HAVE_STRING_H
 #include <string.h>
-#include <ctype.h>
+#endif
 #include <regex.h>
 #include <libintl.h>
+#if HAVE_LOCALE_H
 #include <locale.h>
+#endif
 
 #include "rpmatch.h"
 
@@ -54,11 +63,11 @@ typedef struct {
 }	compare_t;
 
 static compare_t list[] = {
-	{ 0, "no",    NULL, NULL },
-	{ 1, "yes",   NULL, NULL },
-	{ 0, "^[nN]", NULL, NULL },
-	{ 1, "^[yY]", NULL, NULL },
-	{ 0, NULL,    NULL, NULL }
+	{ 0, "no",    NULL, },
+	{ 1, "yes",   NULL, },
+	{ 0, "^[nN]", NULL, },
+	{ 1, "^[yY]", NULL, },
+	{ 0, NULL,    NULL, }
 };
 
 /**
