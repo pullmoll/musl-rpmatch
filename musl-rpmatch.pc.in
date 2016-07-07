@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: musl-rpmatch
+Description: Implementation of rpmatch(3) for musl libc
+Version: @VERSION@
+Libs: -L${libdir} -lrpmatch
+Cflags: -I${includedir}
