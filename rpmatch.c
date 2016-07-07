@@ -31,6 +31,7 @@
  ***********************************************************************************/
 
 #include "config.h"
+#include "rpmatch.h"
 
 #if HAVE_STDIO_H
 #include <stdio.h>
@@ -41,13 +42,15 @@
 #if HAVE_STRING_H
 #include <string.h>
 #endif
+#if HAVE_REGEX_H
 #include <regex.h>
+#endif
+#if HAVE_LIBINTL_H
 #include <libintl.h>
+#endif
 #if HAVE_LOCALE_H
 #include <locale.h>
 #endif
-
-#include "rpmatch.h"
 
 /**
  * The compare_t structure describes one entry in a list of english
@@ -81,7 +84,7 @@ static compare_t list[] = {
 static int re_compare(const char* response, compare_t* compare)
 {
         const char* pattern = gettext(compare->string);
-        fprintf(stdout, "%s => %s\n", compare->string, pattern);
+
 	if (compare->pattern != pattern) {
 		if (compare->pattern)
 			regfree(&compare->re);
@@ -100,7 +103,6 @@ int rpmatch(const char* response)
 
 	if (!response)
 		return -1;
-
         while (compare->string) {
 		result = re_compare(response, compare);
 		if (result >= 0)
